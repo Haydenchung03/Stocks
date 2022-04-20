@@ -23,14 +23,14 @@ def main():
         print(f"Current Time = {current_time.hour + 1}:{current_time.minute}:{current_time.second}")
         print()
         print("Main Menu")
-        print("Type FindPrice to get price of stock")
-        print("Type Quit to exit")
+        print("Type FindPrice to get price of stock (Type FP)")
+        print("Type Quit to exit (Type Q)")
         user_option = input("What do you want to do: ")
         user_option = user_option.upper()
        
-        if user_option == 'QUIT':
+        if user_option == 'QUIT' or user_option == 'Q':
             break
-        elif user_option == 'FINDPRICE':
+        elif user_option == 'FINDPRICE' or user_option == 'FP':
             print()
             user_input = input('Enter in a ticker: ')
             try:
@@ -48,10 +48,12 @@ def main():
     
 
                     print(f'This is the price of the stock right now: {current_price}')
+                    print('\n')
                 else:
                     extended_hours = soup.find('fin-streamer', {'class': "C($primaryColor) Fz(24px) Fw(b)"}).text
                     print(f'This is the price of the stock before market closed: {current_price}')
                     print(f'This is the price of the stock in extended trading hours: {extended_hours}')
+                    print('\n')
             except:
                 print('Oops. Either the ticker was not inputted correctly or internet was cut off.')
         else:
