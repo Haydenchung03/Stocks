@@ -7,8 +7,6 @@ from month1 import month1
 from stock import *
 from datetime import datetime
 from pytz import timezone
-
-
 def main():
     
     while(True):
@@ -16,7 +14,6 @@ def main():
         tz = timezone('EST')
         current_time = datetime.now(tz)
         comma = ','
-
         getMonth1 = month1(current_time.month)
         getName = getMonth1.numToMonth()
         print(f'Current Date = {getName} {current_time.day}{comma}{current_time.year}')
@@ -38,20 +35,14 @@ def main():
                 
                 get_stock = user_stock.get_ticker()
                 
-                url = f'https://finance.yahoo.com/quote/{get_stock}/'
-
+                url = f'https://finance.yahoo.com/quote/{get_stock}'
                 response = requests.get(url)
-
-                soup = BeautifulSoup(response.text, "lxml")
+                soup = BeautifulSoup(response.text, "html.parser")
                 current_price = soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('fin-streamer').text
-                if current_time.hour >= 9.5 and current_time.hour < 16:
+                if ((current_time.hour >= 9 and current_time.minute >= 30) or current_time >= 10) and current_time.hour < 16:
     
-                    while(user_continue != "Q"):
-                        user_continue = input('Hit any button to update the stock. Type Q to stop')
-                        print(f'Current Date = {getName} {current_time.day}{comma}{current_time.year}')
-                        print(f"Current Time = {current_time.hour + 1}:{current_time.minute}:{current_time.second}")
-                        print(f'This is the price of the stock right now: {current_price}')
-                        print('\n')
+                    print(f'This is the price of the stock right now: {current_price}')
+                    print('\n')
                 else:
                     extended_hours = soup.find('fin-streamer', {'class': "C($primaryColor) Fz(24px) Fw(b)"}).text
                     print(f'This is the price of the stock before market closed: {current_price}')
