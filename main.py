@@ -46,7 +46,7 @@ def main():
                 current_price = soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('fin-streamer').text
                 if current_time.hour >= 9.5 and current_time.hour < 16:
     
-                    while(user_continue != 'Q'):
+                    while(user_continue != "Q"):
                         user_continue = input('Hit any button to update the stock. Type Q to stop')
                         print(f'Current Date = {getName} {current_time.day}{comma}{current_time.year}')
                         print(f"Current Time = {current_time.hour + 1}:{current_time.minute}:{current_time.second}")
