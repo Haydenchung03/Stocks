@@ -56,6 +56,7 @@ def main():
                     print('\n')
             except:
                 print('Oops. Either the ticker was not inputted correctly or internet was cut off.')
+                print('\n')
         else:
             print('Not a valid option')
 
