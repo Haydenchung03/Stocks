@@ -1,9 +1,7 @@
-
 import bs4
 from bs4 import BeautifulSoup
 import requests
 import re
-import time
 from stock import *
 from datetime import datetime
 from pytz import timezone
@@ -15,9 +13,11 @@ def main():
         now = datetime.now()
         tz = timezone('EST')
         current_time = datetime.now(tz)
-        print(f"Current Time = {current_time}")
-        
-        user_option = input(" ")
+        comma = ','
+        print("Main Menu")
+        print(f'Current Time = {current_time.month} {current_time.day}{comma}{current_time.year}')
+        print(f"Current Time = {current_time.hour}:{current_time.minute}:{current_time.second}")
+        #user_option = input(" ")
         user_input = input('Enter in a ticker: ')
 
         user_stock = stock(user_input)
@@ -39,6 +39,7 @@ def main():
             
             print(f'This is the price of the stock in extended trading hours: {extended_hours}');
 
+getMonth = month(1)
 main()
 
 
