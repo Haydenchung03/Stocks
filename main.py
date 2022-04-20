@@ -43,14 +43,14 @@ def main():
                 response = requests.get(url)
 
                 soup = BeautifulSoup(response.text, "lxml")
-
+                current_price = soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('fin-streamer').text
                 if current_time.hour >= 9.5 and current_time.hour < 16:
-                    current_price = soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('fin-streamer').text
+    
 
-                    print(f'This is the price of the current stock: {current_price}')
+                    print(f'This is the price of the stock right now: {current_price}')
                 else:
                     extended_hours = soup.find('fin-streamer', {'class': "C($primaryColor) Fz(24px) Fw(b)"}).text
-                    
+                    print(f'This is the price of the stock before market closed: {current_price}')
                     print(f'This is the price of the stock in extended trading hours: {extended_hours}')
             except:
                 print('Oops. Either the ticker was not inputted correctly or internet was cut off.')
