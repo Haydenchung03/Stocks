@@ -19,18 +19,18 @@ def main():
 
         getMonth1 = month1(current_time.month)
         getName = getMonth1.numToMonth()
-        
+        print(f'Current Date = {getName} {current_time.day}{comma}{current_time.year}')
+        print(f"Current Time = {current_time.hour + 1}:{current_time.minute}:{current_time.second}")
+        print()
         print("Main Menu")
         print("Type FindPrice to get price of stock")
         print("Type Quit to exit")
         user_option = input("What do you want to do: ")
-        print()
-        print(f'Current Time = {getName} {current_time.day}{comma}{current_time.year}')
-        print(f"Current Time = {current_time.hour + 1}:{current_time.minute}:{current_time.second}")
-        
-        if user_option == 'Quit':
+        user_option = user_option.upper()
+       
+        if user_option == 'QUIT':
             break
-        elif user_option == 'FindPrice':
+        elif user_option == 'FINDPRICE':
             print()
             user_input = input('Enter in a ticker: ')
             try:
